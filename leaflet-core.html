@@ -691,6 +691,9 @@ add a marker with a popup text.
 			// set map view after registering events so viewreset and load events can be caught
 			map.setView([this.latitude, this.longitude], this.zoom);
 			// update attributes
+			map.on('click', function(e) {
+				this.fire('mapclick', e);
+			}, this);
 			map.on('moveend', function(e) {
 				this._ignoreViewChange = true;
 				this.longitude = map.getCenter().lng;
